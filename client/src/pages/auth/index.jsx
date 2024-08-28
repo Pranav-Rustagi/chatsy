@@ -1,7 +1,33 @@
 import BouncingChatsy from "@/components/bouncingChatsy";
 import Image from "next/image";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { firebaseAuth } from "@/firebase/firebase-auth.js";
+import axios from "axios";
+import { AUTH_ROUTES } from "@/constants/apiRoutes";
+import { useRouter } from "next/router";
+
 
 const AuthPage = () => {
+    const router = useRouter();
+
+    const handleGoogleAuth = async () => {
+        const provider = new GoogleAuthProvider();
+        const { user } = await signInWithPopup(firebaseAuth, provider);
+        const { displayName: name, email, photoURL: profile_picture } = user;
+
+        try {
+            if (email) {
+                const { data } = await axios.post(AUTH_ROUTES.CHECK_USER, { email });
+
+                if (!data.status) {
+                    router.replace("/onboard");
+                }
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
         <div className="w-full h-screen bg-chatsy-dark text-white flex">
             <div className="w-1/2 flex justify-center items-center p-10">
@@ -9,9 +35,7 @@ const AuthPage = () => {
                     <h1 className="text-4xl mb-4 font-bold">Hey buddy!</h1>
                     <h1 className="text-5xl font-bold">Let's Chatsy</h1>
 
-                    <br />
-                    <br />
-                    <br />
+                    <br /><br /><br />
 
                     <div className="flex flex-col w-full">
                         <input type="text" placeholder="Email or Phone Number"
@@ -36,7 +60,7 @@ const AuthPage = () => {
 
                     <div>
                         <button
-                            onClick={() => {alert("Google Auth")}}
+                            onClick={handleGoogleAuth}
                             className="w-full flex gap-4 justify-center items-center border border-none p-3 rounded-md bg-white text-chatsy-dark placeholder:text-chatsy-ternary-dark outline-none"
                         >
                             <Image src="/icons/google.png" alt="Google Auth" width="24" height="24" />
