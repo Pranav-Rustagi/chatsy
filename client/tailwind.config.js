@@ -18,6 +18,7 @@ module.exports = {
                 "chatsy-ternary-dark": "#333",
                 "chatsy-orange-primary": "#c46b23",
                 "chatsy-almost-black": "#0a0a0a",
+                "chatsy-black-transparent": "#0a0a0a80",
             },
             keyframes: {
                 "beat": {
