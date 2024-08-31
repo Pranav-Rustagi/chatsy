@@ -44,7 +44,7 @@ const AuthPage = () => {
 
                         <br />
 
-                        <button className="px-5 py-3 rounded-md bg-orange-500">
+                        <button className="w-full px-5 py-3 rounded-md bg-orange-500">
                             Continue
                         </button>
                     </div>

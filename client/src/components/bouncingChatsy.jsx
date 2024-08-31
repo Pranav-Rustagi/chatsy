@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const BouncingChatsy = ({ src = "/logo.png", width = 200, height = 200, shadowWidth = 140, shadowHeight = 24 }) => {
+const BouncingChatsy = ({ src = "/icons/logo.png", width = 200, height = 200, shadowWidth = 140, shadowHeight = 24 }) => {
     return (
         <div className="flex items-center flex-col">
             <Image 
