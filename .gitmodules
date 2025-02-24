@@ -1,0 +1,6 @@
+[submodule "chatsy-backend"]
+	path = chatsy-backend
+	url = https://github.com/Pranav-Rustagi/chatsy-backend
+[submodule "chatsy-frontend"]
+	path = chatsy-frontend
+	url = https://github.com/Pranav-Rustagi/chatsy-frontend
